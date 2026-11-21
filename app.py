@@ -1,4 +1,8 @@
+import os
 from pathlib import Path
+
+os.environ.setdefault("MPLBACKEND", "Agg")
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -53,7 +57,7 @@ def find_product_image(product_id, image_map: dict[str, str], images_dir: Path) 
 def show_product_image(product_id, image_map: dict[str, str], images_dir: Path, caption: str | None = None):
     img_path = find_product_image(product_id, image_map, images_dir)
     if img_path:
-        st.image(img_path, caption=caption, width="stretch")
+        st.image(img_path, caption=caption, use_container_width=True)
     else:
         st.caption("🖼️ No image found")
 
